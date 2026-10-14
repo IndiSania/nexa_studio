@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexa Studio membantu bisnis bertumbuh melalui strategi digital, desain, dan pengembangan web.">
+  <title>Nexa Studio — Digital Experiences That Matter</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #111a2d;
+      --surface-2: #17233a;
+      --text: #f4f7fb;
+      --muted: #a9b4c8;
+      --line: rgba(255,255,255,.12);
+      --accent: #a7f36b;
+      --accent-2: #7dd3fc;
+      --max: 1160px;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; background: rgba(11,16,32,.82); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.07); }
+    nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 1.08rem; font-weight: 800; letter-spacing: -.04em; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; background: var(--accent); color: #101827; font-weight: 950; transform: rotate(-7deg); }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: .91rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+    .nav-cta, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 12px 19px; font-weight: 750; font-size: .92rem; transition: transform .2s, background .2s; }
+    .nav-cta, .btn-primary { color: #101827; background: var(--accent); }
+    .nav-cta:hover, .btn:hover { transform: translateY(-2px); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: transparent; color: var(--text); border-radius: 12px; padding: 8px 11px; }
+    .hero { position: relative; overflow: hidden; padding: 104px 0 88px; }
+    .hero::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; right: -140px; top: -160px; background: radial-gradient(circle, rgba(125,211,252,.15), transparent 68%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 64px; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; }
+    .eyebrow::before { content: ""; width: 25px; height: 1px; background: currentColor; }
+    h1 { font-size: clamp(2.8rem, 5.5vw, 5.25rem); line-height: 1.02; letter-spacing: -.07em; margin: 22px 0; max-width: 720px; }
+    h1 span { color: var(--accent); }
+    .hero-copy { max-width: 540px; color: var(--muted); font-size: 1.08rem; margin: 0 0 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; }
+    .btn-secondary { border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,.03); }
+    .micro-proof { display: flex; align-items: center; gap: 14px; margin-top: 36px; color: var(--muted); font-size: .83rem; }
+    .avatars { display: flex; padding-left: 5px; }
+    .avatar { width: 29px; height: 29px; margin-left: -5px; border-radius: 50%; border: 2px solid var(--bg); display: grid; place-items: center; font-size: .67rem; font-weight: 800; color: #101827; }
+    .avatar:nth-child(1) { background: #fbbf24; } .avatar:nth-child(2) { background: #7dd3fc; } .avatar:nth-child(3) { background: #f9a8d4; } .avatar:nth-child(4) { background: #c4b5fd; }
+    .visual { min-height: 430px; position: relative; display: grid; place-items: center; }
+    .orbit { width: min(100%, 430px); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; position: relative; display: grid; place-items: center; }
+    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.09); border-radius: 50%; }
+    .orbit::before { inset: 12%; } .orbit::after { inset: 25%; }
+    .core { width: 43%; aspect-ratio: 1; border-radius: 30%; transform: rotate(-12deg); background: linear-gradient(145deg, #c9ff9b, #7bdc74); color: #0d1924; display: grid; place-items: center; box-shadow: 0 20px 80px rgba(167,243,107,.22); z-index: 1; }
+    .core svg { width: 58%; }
+    .float-card { position: absolute; z-index: 2; background: rgba(23,35,58,.92); border: 1px solid var(--line); border-radius: 17px; padding: 15px 17px; box-shadow: 0 20px 60px rgba(0,0,0,.22); backdrop-filter: blur(12px); }
+    .float-card small { display: block; color: var(--muted); font-size: .73rem; }
+    .float-card strong { display: block; font-size: 1.22rem; letter-spacing: -.04em; }
+    .card-growth { top: 10%; right: -2%; } .card-project { bottom: 10%; left: -2%; }
+    .growth-line { height: 28px; display: flex; align-items: end; gap: 4px; margin-top: 8px; }
+    .growth-line i { display: block; width: 8px; border-radius: 4px 4px 1px 1px; background: var(--accent); }
+    .growth-line i:nth-child(1){height: 9px}.growth-line i:nth-child(2){height: 15px}.growth-line i:nth-child(3){height: 12px}.growth-line i:nth-child(4){height: 22px}.growth-line i:nth-child(5){height: 27px}
+    .section { padding: 92px 0; }
+    .section-muted { background: #0e1628; border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 42px; }
+    .section-head h2 { max-width: 650px; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.08; letter-spacing: -.06em; margin: 13px 0 0; }
+    .section-head p { max-width: 390px; margin: 0; color: var(--muted); }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .stat { padding: 26px; background: rgba(255,255,255,.025); }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat strong { display: block; font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.1; letter-spacing: -.06em; }
+    .stat span { color: var(--muted); font-size: .86rem; display: block; margin-top: 8px; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .service-card { background: var(--surface); border: 1px solid var(--line); padding: 28px; border-radius: var(--radius); transition: transform .25s, border-color .25s; }
+    .service-card:hover { transform: translateY(-5px); border-color: rgba(167,243,107,.45); }
+    .icon-box { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; color: var(--accent); background: rgba(167,243,107,.1); margin-bottom: 24px; }
+    .icon-box svg { width: 23px; height: 23px; }
+    .service-card h3 { font-size: 1.2rem; letter-spacing: -.03em; margin: 0 0 10px; }
+    .service-card p { color: var(--muted); font-size: .92rem; margin: 0 0 22px; }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 750; font-size: .88rem; }
+    .projects { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; }
+    .project { position: relative; overflow: hidden; min-height: 320px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--line); }
+    .project-art { position: absolute; inset: 0; overflow: hidden; }
+    .art-one { background: linear-gradient(135deg, #d2f8b5, #6ebc9b); }
+    .art-one .mock-window { position: absolute; width: 66%; height: 72%; left: 17%; top: 15%; border-radius: 12px; background: #f7f9f4; box-shadow: 0 20px 45px rgba(0,0,0,.2); padding: 14px; transform: rotate(-4deg); }
+    .mock-dots { display: flex; gap: 4px; } .mock-dots i { width: 5px; height: 5px; border-radius: 50%; background: #b4c1b4; }
+    .mock-title { width: 70%; height: 13px; border-radius: 4px; background: #203b33; margin: 18px 0 8px; }
+    .mock-sub { width: 46%; height: 5px; border-radius: 4px; background: #a8b8ac; }
+    .mock-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 20px; }
+    .mock-blocks i { height: 65px; border-radius: 7px; background: #dce8da; } .mock-blocks i:last-child { background: #c6ef87; }
+    .art-two { background: radial-gradient(circle at 70% 25%, #a8a3ff, transparent 35%), linear-gradient(135deg, #342f70, #171b3e); }
+    .dashboard { position: absolute; width: 72%; height: 62%; left: 14%; top: 19%; border: 1px solid rgba(255,255,255,.22); background: rgba(17,26,45,.84); border-radius: 13px; padding: 14px; transform: rotate(5deg); }
+    .dash-line { height: 6px; width: 42%; background: #a7f36b; border-radius: 5px; margin: 7px 0 18px; }
+    .dash-chart { height: 58%; display: flex; align-items: end; gap: 7px; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .dash-chart i { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(#a7f36b, #7dd3fc); opacity: .9; }
+    .dash-chart i:nth-child(1){height:25%}.dash-chart i:nth-child(2){height:42%}.dash-chart i:nth-child(3){height:34%}.dash-chart i:nth-child(4){height:65%}.dash-chart i:nth-child(5){height:53%}.dash-chart i:nth-child(6){height:82%}.dash-chart i:nth-child(7){height:100%}
+    .project-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 26px; background: linear-gradient(transparent, rgba(7,12,24,.93)); z-index: 2; }
+    .project-info .tag { display: inline-block; color: #101827; background: var(--accent); border-radius: 999px; padding: 4px 10px; font-size: .7rem; font-weight: 850; margin-bottom: 9px; }
+    .project-info h3 { margin: 0; font-size: 1.45rem; letter-spacing: -.04em; }
+    .project-info p { color: #d0d8e5; margin: 4px 0 0; font-size: .87rem; }
+    .testimonial { display: grid; grid-template-columns: .7fr 1.3fr; gap: 55px; align-items: center; }
+    .quote-mark { font-size: 6rem; line-height: .7; color: var(--accent); font-family: Georgia, serif; }
+    blockquote { font-size: clamp(1.4rem, 2.8vw, 2.35rem); line-height: 1.3; letter-spacing: -.04em; margin: 0 0 25px; }
+    .person { display: flex; align-items: center; gap: 13px; }
+    .person-avatar { width: 43px; height: 43px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg,#f9a8d4,#c4b5fd); color: #17152b; font-weight: 900; }
+    .person strong { display: block; font-size: .92rem; } .person span { display: block; color: var(--muted); font-size: .8rem; }
+    .contact-card { padding: clamp(28px, 5vw, 58px); border: 1px solid var(--line); border-radius: 28px; background: radial-gradient(circle at 100% 0%, rgba(167,243,107,.1), transparent 34%), var(--surface); display: grid; grid-template-columns: 1fr .9fr; gap: 50px; }
+    .contact-card h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); letter-spacing: -.065em; line-height: 1.05; margin: 15px 0; }
+    .contact-card p { color: var(--muted); max-width: 420px; }
+    .contact-meta { margin-top: 30px; color: var(--muted); font-size: .9rem; }
+    .contact-meta strong { color: var(--text); display: block; margin-top: 5px; }
+    form { display: grid; gap: 14px; }
+    .field { display: grid; gap: 7px; }
+    label { font-size: .83rem; font-weight: 700; color: #dce4f0; }
+    input, textarea { width: 100%; color: var(--text); background: rgba(5,10,22,.45); border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; outline: none; transition: border-color .2s; }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    textarea { min-height: 110px; resize: vertical; }
+    .form-note { min-height: 22px; font-size: .82rem; color: var(--accent); }
+    footer { padding: 30px 0; color: var(--muted); font-size: .83rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: var(--text); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 20px; } .hero { padding-top: 75px; }
+      .visual { min-height: 390px; } .orbit { max-width: 360px; }
+      .section-head { align-items: start; flex-direction: column; }
+      .services { grid-template-columns: 1fr 1fr; } .testimonial { grid-template-columns: 1fr; gap: 25px; }
+      .contact-card { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(var(--max), calc(100% - 30px)); }
+      nav { min-height: 68px; } .menu-toggle { display: inline-flex; }
+      .nav-cta { display: none; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 24px; background: #0b1020; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 17px; }
+      .nav-links.open { display: flex; }
+      .hero { padding: 62px 0 55px; } h1 { font-size: clamp(2.8rem, 14vw, 4.2rem); }
+      .hero-copy { font-size: 1rem; } .visual { min-height: 320px; }
+      .card-growth { right: -1%; top: 7%; } .card-project { left: -1%; bottom: 6%; }
+      .float-card { padding: 11px 13px; } .float-card strong { font-size: 1rem; }
+      .section { padding: 68px 0; } .stats { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 21px; } .stat:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); } .stat:nth-child(4) { border-top: 1px solid var(--line); }
+      .services { grid-template-columns: 1fr; } .projects { grid-template-columns: 1fr; }
+      .project { min-height: 300px; } .footer-inner { align-items: start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav aria-label="Navigasi utama">
+        <a class="brand" href="#home" aria-label="Nexa Studio beranda"><span class="brand-mark">N</span><span>nexa<span style="color:var(--accent)">.</span>studio</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#layanan">Layanan</a><a href="#proyek">Proyek</a><a href="#tentang">Tentang</a><a href="#kontak">Kontak</a>
+        </div>
+        <a class="nav-cta" href="#kontak">Mulai proyek <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Partner digital untuk bisnis ambisius</div>
+          <h1>Ide hebat, jadi <span>pengalaman</span> yang berarti.</h1>
+          <p class="hero-copy">Kami menggabungkan strategi, desain, dan teknologi untuk membantu brand tampil lebih kuat, bekerja lebih cerdas, dan tumbuh lebih cepat.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontak">Diskusikan proyek <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#proyek">Lihat karya kami <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="micro-proof">
+            <div class="avatars" aria-hidden="true"><span class="avatar">A</span><span class="avatar">D</span><span class="avatar">N</span><span class="avatar">R</span></div>
+            <span>Dipercaya oleh tim yang ingin melangkah lebih jauh.</span>
+          </div>
+        </div>
+        <div class="visual reveal" aria-label="Ilustrasi abstrak strategi dan pertumbuhan digital">
+          <div class="orbit">
+            <div class="core">
+              <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M20 65L42 43L56 57L82 28" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M61 28H82V49" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="float-card card-growth"><small>Pertumbuhan terukur</small><strong>+128%</strong><div class="growth-line" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="float-card card-project"><small>Fokus kami</small><strong>Impact first.</strong><small>Desain dengan tujuan.</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="tentang">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">Dampak dalam angka</div><h2>Kreativitas yang punya arah.</h2></div>
+          <p>Setiap keputusan desain dan teknologi harus punya alasan yang jelas: membantu bisnis dan orang-orang di baliknya.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><strong>40+</strong><span>Proyek terselesaikan</span></div>
+          <div class="stat"><strong>18</strong><span>Brand bertumbuh bersama</span></div>
+          <div class="stat"><strong>96%</strong><span>Kepuasan klien</span></div>
+          <div class="stat"><strong>5 th</strong><span>Pengalaman digital</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">Apa yang kami kerjakan</div><h2>Solusi menyeluruh, hasil yang terasa.</h2></div>
+          <p>Dari ide pertama sampai peluncuran, kami membantu mengubah tantangan menjadi peluang yang bisa diukur.</p>
+        </div>
+        <div class="services">
+          <article class="service-card reveal">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4M8 11h6M11 8v6"/></svg></div>
+            <h3>Strategi & Branding</h3><p>Bangun fondasi brand yang jelas, konsisten, dan mudah diingat oleh audiens yang tepat.</p><a class="text-link" href="#kontak">Pelajari layanan <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5M8 13h4M8 16h8"/></svg></div>
+            <h3>Desain UI/UX</h3><p>Pengalaman digital yang intuitif, menarik, dan dirancang untuk memudahkan pengguna.</p><a class="text-link" href="#kontak">Pelajari layanan <span>↗</span></a>
+          </article>
+          <article class="service-card reveal">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></div>
+            <h3>Web Development</h3><p>Website cepat, responsif, dan siap berkembang seiring kebutuhan bisnis Anda.</p><a class="text-link" href="#kontak">Pelajari layanan <span>↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="proyek">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">Pilihan karya</div><h2>Dirancang untuk bergerak maju.</h2></div>
+          <p>Contoh konsep yang menunjukkan bagaimana strategi dan eksekusi visual bekerja bersama.</p>
+        </div>
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project-art art-one"><div class="mock-window"><div class="mock-dots"><i></i><i></i><i></i></div><div class="mock-title"></div><div class="mock-sub"></div><div class="mock-blocks"><i></i><i></i></div></div></div>
+            <div class="project-info"><span class="tag">Brand & Website</span><h3>Forma Living</h3><p>Identitas digital untuk brand interior modern.</p></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-art art-two"><div class="dashboard"><div class="dash-line"></div><div class="dash-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+            <div class="project-info"><span class="tag">Product Design</span><h3>Orbit Analytics</h3><p>Dashboard data yang lebih sederhana dan tajam.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container testimonial reveal">
+        <div><div class="eyebrow">Cerita kolaborasi</div><div class="quote-mark">“</div></div>
+        <div>
+          <blockquote>Tim Nexa tidak hanya membuat tampilan yang bagus. Mereka membantu kami melihat masalah dari sudut pandang baru dan mengubahnya menjadi pengalaman yang benar-benar berguna.</blockquote>
+          <div class="person"><div class="person-avatar">MA</div><div><strong>Michelle Andara</strong><span>Brand Lead · Forma Living <em style="font-style:normal;color:#78869e"> (contoh testimoni)</em></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <div class="eyebrow">Mari mulai sesuatu</div>
+            <h2>Punya ide? Kita wujudkan.</h2>
+            <p>Ceritakan sedikit tentang kebutuhan Anda. Mari cari cara terbaik untuk membuat proyek berikutnya berdampak.</p>
+            <div class="contact-meta">Email untuk kolaborasi<strong>hello@nexastudio.example</strong></div>
+          </div>
+          <form id="contactForm">
+            <div class="field"><label for="name">Nama</label><input id="name" name="name" autocomplete="name" placeholder="Nama Anda" required></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="nama@email.com" required></div>
+            <div class="field"><label for="message">Ceritakan proyek Anda</label><textarea id="message" name="message" placeholder="Apa yang ingin Anda bangun?" required></textarea></div>
+            <button class="btn btn-primary" type="submit">Siapkan pesan <span aria-hidden="true">↗</span></button>
+            <div class="form-note" id="formNote" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">N</span><span>nexa<span style="color:var(--accent)">.</span>studio</span></a>
+      <span>© <span id="year"></span> Nexa Studio. Dibuat dengan tujuan.</span>
+      <div class="footer-links"><a href="#layanan">Layanan</a><a href="#proyek">Proyek</a><a href="#kontak">Kontak</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? 'Tutup ✕' : 'Menu ☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = 'Menu ☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Konsultasi proyek dari ' + name);
+      const body = encodeURIComponent('Nama: ' + name + '\\nEmail: ' + email + '\\n\\nDetail proyek:\\n' + message);
+      document.getElementById('formNote').textContent = 'Aplikasi email akan dibuka untuk mengirim pesan Anda.';
+      window.location.href = 'mailto:hello@nexastudio.example?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
